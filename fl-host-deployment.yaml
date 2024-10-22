@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fl-host
+  namespace: federated-learning
+  labels:
+    app: fl-host
+spec:
+  replicas: 1  
+  selector:
+    matchLabels:
+      app: fl-host
+  template:
+    metadata:
+      labels:
+        app: fl-host
+    spec:
+      containers:
+      - name: fl-host-container
+        image: fl-host:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 31000
+        workingDir: /home/app/fl-host/
+        command: ["sh", "-c", "python3 flhost.py && while true; do sleep 3600; done"]
+        envFrom:
+        - configMapRef:
+            name: fl-host-configmap  

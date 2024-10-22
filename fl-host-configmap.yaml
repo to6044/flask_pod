@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fl-host-configmap
+  namespace: federated-learning
+data:
+  KUBEFLOW_HOST: ml-pipeline-ui.kubeflow
+  KUBEFLOW_PORT: "80"
+  KF_FL_NAMESPACE: federatedlearning
+  KF_FL_HOST_PORT: "31000"
+  TRAININGMGR_HOST: tm.traininghost
+  TRAININGMGR_PORT: "32002"
